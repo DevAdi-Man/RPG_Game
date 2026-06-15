@@ -1,30 +1,44 @@
-[gd_scene format=3 uid="uid://dcvkfg1v0sruk"]
+[gd_scene format=4 uid="uid://dcvkfg1v0sruk"]
 
 [ext_resource type="PackedScene" uid="uid://b318ee3wd628m" path="res://player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dguctm3dds3g6" path="res://world/grass_background.png" id="1_fj7yv"]
+[ext_resource type="TileSet" uid="uid://dm66kco5e5x0n" path="res://world/dirtTilesets.tres" id="2_dwbse"]
+[ext_resource type="TileSet" uid="uid://cohom42ww50ek" path="res://world/cliffTilesets.tres" id="3_dwbse"]
 [ext_resource type="PackedScene" uid="uid://cnmf0w2lhevkc" path="res://world/bush.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tyqqjvdb1voh" path="res://world/tree.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://bruneo7845py5" path="res://world/grass.tscn" id="7_pkg7o"]
 
 [node name="World" type="Node2D" unique_id=1950842557]
 y_sort_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1355932033]
+[node name="GroundLayer" type="Node2D" parent="." unique_id=747301355]
+z_index = -100
+
+[node name="Parallax2D" type="Parallax2D" parent="GroundLayer" unique_id=1355932033]
 repeat_size = Vector2(320, 180)
 
-[node name="GrassBackground" type="TextureRect" parent="Parallax2D" unique_id=1460323762]
+[node name="GrassBackground" type="TextureRect" parent="GroundLayer/Parallax2D" unique_id=1460323762]
 offset_right = 360.0
 offset_bottom = 180.0
 texture = ExtResource("1_fj7yv")
 stretch_mode = 1
 
+[node name="DirtTileMapLayer" type="TileMapLayer" parent="GroundLayer" unique_id=664531708]
+tile_map_data = PackedByteArray("AAANAAAAAAACAAAAAAANAAEAAAACAAEAAAANAAIAAAACAAEAAAANAAMAAAACAAEAAAANAAQAAAACAAEAAAANAAUAAAACAAEAAAANAAYAAAACAAEAAAAMAAYAAAAAAAEAAAAMAAUAAAAAAAEAAAAMAAQAAAAAAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAAAAAAMAAcAAAAAAAEAAAALAAgAAAABAAAAAAAKAAgAAAABAAAAAAAKAAkAAAABAAIAAAAJAAkAAAABAAIAAAAIAAkAAAAFAAEAAAAHAAoAAAAAAAEAAAAHAAsAAAAAAAEAAAAHAAkAAAAAAAEAAAAHAAgAAAAEAAIAAAAHAAcAAAADAAEAAAAHAAYAAAADAAEAAAAHAAUAAAADAAEAAAAHAAQAAAADAAAAAAANAAcAAAAFAAIAAAANAAgAAAABAAEAAAAOAAgAAAAFAAEAAAAPAAgAAAABAAIAAAAQAAgAAAABAAIAAAARAAgAAAABAAIAAAASAAgAAAABAAIAAAATAAgAAAABAAIAAAAUAAgAAAABAAIAAAAVAAgAAAAKAAMAAAAVAAkAAAAAAAEAAAAVAAoAAAAAAAEAAAAVAAcAAAAHAAIAAAAVAAYAAAADAAEAAAAVAAUAAAADAAEAAAAVAAQAAAADAAEAAAAVAAMAAAADAAAAAAAWAAgAAAAHAAAAAAAWAAkAAAACAAEAAAAWAAoAAAACAAEAAAAMAAgAAAAGAAIAAAANAAkAAAAGAAEAAAANAAoAAAAAAAEAAAANAAsAAAAEAAEAAAANAAwAAAADAAEAAAANAA0AAAADAAEAAAANAA4AAAADAAEAAAAOAAsAAAACAAIAAAAOAAoAAAACAAEAAAAOAAkAAAACAAEAAAALAAkAAAABAAIAAAAIAAsAAAACAAEAAAAIAAoAAAACAAEAAAAIAAwAAAACAAIAAAAHAAwAAAAAAAIAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAMAAkAAAABAAIAAAAOAAcAAAABAAAAAAAPAAcAAAABAAAAAAARAAcAAAABAAAAAAASAAcAAAABAAAAAAATAAcAAAABAAAAAAAUAAcAAAABAAAAAAAQAAcAAAABAAAAAAAVAAsAAAAAAAIAAAAWAAsAAAACAAIAAAANAA8AAAAHAAMAAAAHAA8AAAAAAAMAAAAIAA8AAAABAAMAAAAJAA8AAAABAAMAAAAMAA8AAAABAAMAAAALAA8AAAABAAMAAAAKAA8AAAABAAMAAAA=")
+tile_set = ExtResource("2_dwbse")
+
+[node name="CliffTileMapLayer" type="TileMapLayer" parent="GroundLayer" unique_id=386817651]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP//AAAFAAAAAAABAP//AAABAAMAAAACAP//AAABAAMAAAAAAAEAAAACAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAAAAAAACAAEAAAACAAIAAAAHAAAAAAABAAIAAAABAAMAAAAAAAIAAAAFAAMAAAD//wIAAAAAAAIAAAACAAMAAAADAAIAAAALAP//AAAGAAAAAAALAAAAAAAAAAEAAAALAAEAAAAAAAEAAAAMAAEAAAABAAEAAAANAAEAAAAFAAEAAAAOAAEAAAACAAIAAAAOAAAAAAACAAEAAAANAAAAAAABAAEAAAANAP//AAABAAAAAAAMAP//AAABAAAAAAAMAAAAAAABAAEAAAAOAP//AAACAAAAAAAKAP//AAABAAMAAAAJAP//AAABAAMAAAAIAP//AAABAAMAAAAHAP//AAABAAMAAAAGAP//AAABAAMAAAAFAP//AAABAAMAAAAEAP//AAABAAMAAAADAP//AAABAAMAAAALAAIAAAAAAAEAAAALAAMAAAAAAAIAAAAMAAMAAAABAAIAAAANAAMAAAACAAIAAAANAAIAAAACAAEAAAAMAAIAAAABAAEAAAAAAAYAAAAAAAAAAAABAAYAAAABAAAAAAACAAYAAAACAAAAAAACAAcAAAACAAIAAAABAAcAAAABAAIAAAAAAAcAAAAAAAIAAAAHAAYAAAAAAAAAAAAIAAYAAAABAAAAAAAJAAYAAAABAAAAAAAKAAYAAAABAAAAAAALAAYAAAACAAAAAAALAAcAAAACAAEAAAALAAgAAAACAAEAAAALAAkAAAACAAIAAAAHAAcAAAAAAAIAAAAIAAcAAAAGAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAAJAAgAAAAGAAEAAAAIAAgAAAAAAAIAAAAJAAkAAAAAAAIAAAAKAAkAAAABAAIAAAA=")
+tile_set = ExtResource("3_dwbse")
+
 [node name="Player" parent="." unique_id=609422381 instance=ExtResource("1_f3sb7")]
-position = Vector2(62, 30)
+position = Vector2(145, 140)
 
 [node name="Bush" parent="." unique_id=679024289 instance=ExtResource("3_tlwt5")]
 position = Vector2(191, 209)
 
 [node name="Bush2" parent="." unique_id=881670302 instance=ExtResource("3_tlwt5")]
-position = Vector2(23, 129)
+position = Vector2(13, 107)
 
 [node name="Bush3" parent="." unique_id=685189070 instance=ExtResource("3_tlwt5")]
 position = Vector2(119, 25)
@@ -36,13 +50,37 @@ position = Vector2(319, 25)
 position = Vector2(295, 169)
 
 [node name="Bush6" parent="." unique_id=1425231261 instance=ExtResource("3_tlwt5")]
-position = Vector2(239, 41)
+position = Vector2(373, 103)
 
 [node name="tree" parent="." unique_id=265564643 instance=ExtResource("4_aqk2v")]
-position = Vector2(279, 97)
+position = Vector2(413, 39)
 
 [node name="tree2" parent="." unique_id=606948640 instance=ExtResource("4_aqk2v")]
 position = Vector2(167, 105)
 
 [node name="tree3" parent="." unique_id=382684683 instance=ExtResource("4_aqk2v")]
-position = Vector2(79, 185)
+position = Vector2(81, 103)
+
+[node name="Grass" parent="." unique_id=1390388645 instance=ExtResource("7_pkg7o")]
+position = Vector2(40, 103)
+
+[node name="Grass3" parent="." unique_id=1725730422 instance=ExtResource("7_pkg7o")]
+position = Vector2(40, 120)
+
+[node name="Grass4" parent="." unique_id=1342655853 instance=ExtResource("7_pkg7o")]
+position = Vector2(56, 120)
+
+[node name="Grass5" parent="." unique_id=2078422533 instance=ExtResource("7_pkg7o")]
+position = Vector2(147, 8)
+
+[node name="Grass6" parent="." unique_id=1802013717 instance=ExtResource("7_pkg7o")]
+position = Vector2(147, 23)
+
+[node name="Grass7" parent="." unique_id=519245323 instance=ExtResource("7_pkg7o")]
+position = Vector2(166, 8)
+
+[node name="Grass8" parent="." unique_id=972879761 instance=ExtResource("7_pkg7o")]
+position = Vector2(166, 24)
+
+[node name="Grass2" parent="." unique_id=1749209741 instance=ExtResource("7_pkg7o")]
+position = Vector2(57, 103)
