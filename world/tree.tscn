@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn4rm"]
 radius = 11.666666
 
-[node name="tree" type="StaticBody2D" unique_id=265564643]
+[node name="tree" type="StaticBody2D" unique_id=265564643 groups=["navigation_polygon_source_geometry_group"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=471688194]
 position = Vector2(0, -18)

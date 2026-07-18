@@ -8,6 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://tyqqjvdb1voh" path="res://world/tree.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bruneo7845py5" path="res://world/grass.tscn" id="7_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://u1wakcggmqp7" path="res://enemies/bat_enemy.tscn" id="8_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://de75hrfuh5efl" path="res://ui/hearts_ui.tscn" id="9_ioo17"]
+[ext_resource type="AudioStream" uid="uid://dy55q8yrbumph" path="res://music_and_sounds/music.mp3" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://cgah7hc2sdqjv" path="res://pauser.tscn" id="11_ic0uy"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v8qb6"]
+vertices = PackedVector2Array(346, 134, 454, 134, 390, 186, 313.3672, 161, 310.92188, 151.8125, 209.36719, 201, 218, 186, 218, 262, 206.92188, 210.1875, 206.92188, 191.8125, 38, 6, 104.890625, 6, 103.078125, 7.8125, 134.92188, 7.8125, 133.10938, 6, 304.89063, 6, 303.07813, 7.8125, 334.92188, 7.8125, 333.10938, 6, 346, 6, 200.1875, 216.92188, -26, 329.89844, 102, 262, 191, 219.36719, 181.8125, 216.92188, 102, 186, 175.07813, 210.1875, 172.63281, 201, 137.36719, 17, 300.6328, 17, 184.3125, 87.65625, 176.71875, 81.359375, 100.63281, 17, 38, 58, 102, 58, 103.078125, 26.1875, 109.8125, 32.921875, 337.3672, 17, 334.92188, 26.1875, 328.1875, 32.921875, 184.3125, 106.34375, 187.29688, 97, 319, 35.367188, 304.1875, 145.07813, 295, 142.63281, 309.8125, 32.921875, 303.07813, 26.1875, 497.85938, 322.09375, 390, 323.70313, 250, 262, 250, 294, 282, 294, 282, 325.3125, -6, 262, -26, 102, -6, 186, -4.5703125, 102, -2.921875, 108.1875, 3.8125, 114.921875, 13, 117.36719, 22.1875, 114.921875, 28.921875, 108.1875, 58, 134, 30.570313, 102, 58, 102, 175.07813, 191.8125, 102, 134, 181.8125, 185.07813, 454, 70, 486, 70, 486, -34, 490.1328, -34, 310.92188, 170.1875, 119, 35.367188, 149.70313, 87.65625, 146.70313, 97, 167, 79.1875, 134.92188, 26.1875, 157.28125, 81.359375, 128.1875, 32.921875, 149.70313, 106.34375, 157.28125, 112.640625, 167, 114.8125, 191, 182.63281, 200.1875, 185.07813, 176.71875, 112.640625, 276.6328, 161, 279.07813, 170.1875, 285.8125, 145.07813, 279.07813, 151.8125, 285.8125, 176.92188, 304.1875, 176.92188, 295, 179.36719)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(6, 5, 9), PackedInt32Array(10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19), PackedInt32Array(20, 8, 7), PackedInt32Array(20, 7, 21, 22, 23), PackedInt32Array(24, 23, 22), PackedInt32Array(24, 22, 25, 26), PackedInt32Array(27, 26, 25), PackedInt32Array(28, 13, 16, 29, 30, 31), PackedInt32Array(10, 12, 32, 33), PackedInt32Array(34, 33, 32, 35), PackedInt32Array(34, 35, 36), PackedInt32Array(37, 17, 19), PackedInt32Array(37, 19, 0, 38), PackedInt32Array(39, 38, 0), PackedInt32Array(40, 41, 42, 39, 0, 43, 44), PackedInt32Array(45, 42, 41), PackedInt32Array(46, 45, 41, 30), PackedInt32Array(47, 48, 2, 1), PackedInt32Array(7, 49, 50, 21), PackedInt32Array(50, 51, 52, 21), PackedInt32Array(53, 22, 21), PackedInt32Array(53, 21, 54, 55), PackedInt32Array(55, 54, 56, 57), PackedInt32Array(55, 57, 58), PackedInt32Array(25, 55, 58, 59), PackedInt32Array(25, 59, 60), PackedInt32Array(25, 60, 61, 62), PackedInt32Array(63, 64, 62, 61), PackedInt32Array(65, 25, 62, 66, 67), PackedInt32Array(1, 68, 69, 47), PackedInt32Array(69, 70, 71, 47), PackedInt32Array(72, 3, 2), PackedInt32Array(66, 34, 36, 73, 74, 75), PackedInt32Array(65, 27, 25), PackedInt32Array(29, 46, 30), PackedInt32Array(28, 31, 76, 77), PackedInt32Array(77, 76, 78, 79), PackedInt32Array(79, 78, 74, 73), PackedInt32Array(66, 75, 80), PackedInt32Array(67, 66, 80, 81), PackedInt32Array(67, 81, 82, 83), PackedInt32Array(6, 84, 83, 82, 85, 86, 87), PackedInt32Array(6, 9, 84), PackedInt32Array(0, 4, 43), PackedInt32Array(40, 44, 88), PackedInt32Array(40, 88, 89), PackedInt32Array(40, 89, 86, 85), PackedInt32Array(6, 87, 90), PackedInt32Array(91, 72, 2), PackedInt32Array(6, 90, 92), PackedInt32Array(2, 6, 92), PackedInt32Array(91, 2, 92)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -40, 496, -40, 504, 328, -32, 336)])
+source_geometry_mode = 2
+agent_radius = 6.0
 
 [node name="World" type="Node2D" unique_id=1950842557]
 y_sort_enabled = true
@@ -28,9 +38,13 @@ stretch_mode = 1
 tile_map_data = PackedByteArray("AAANAAAAAAACAAAAAAANAAEAAAACAAEAAAANAAIAAAACAAEAAAANAAMAAAACAAEAAAANAAQAAAACAAEAAAANAAUAAAACAAEAAAANAAYAAAACAAEAAAAMAAYAAAAAAAEAAAAMAAUAAAAAAAEAAAAMAAQAAAAAAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAAAAAAMAAcAAAAAAAEAAAALAAgAAAABAAAAAAAKAAgAAAABAAAAAAAKAAkAAAABAAIAAAAJAAkAAAABAAIAAAAIAAkAAAAFAAEAAAAHAAoAAAAAAAEAAAAHAAsAAAAAAAEAAAAHAAkAAAAAAAEAAAAHAAgAAAAEAAIAAAAHAAcAAAADAAEAAAAHAAYAAAADAAEAAAAHAAUAAAADAAEAAAAHAAQAAAADAAAAAAANAAcAAAAFAAIAAAANAAgAAAABAAEAAAAOAAgAAAAFAAEAAAAPAAgAAAABAAIAAAAQAAgAAAABAAIAAAARAAgAAAABAAIAAAASAAgAAAABAAIAAAATAAgAAAABAAIAAAAUAAgAAAABAAIAAAAVAAgAAAAKAAMAAAAVAAkAAAAAAAEAAAAVAAoAAAAAAAEAAAAVAAcAAAAHAAIAAAAVAAYAAAADAAEAAAAVAAUAAAADAAEAAAAVAAQAAAADAAEAAAAVAAMAAAADAAAAAAAWAAgAAAAHAAAAAAAWAAkAAAACAAEAAAAWAAoAAAACAAEAAAAMAAgAAAAGAAIAAAANAAkAAAAGAAEAAAANAAoAAAAAAAEAAAANAAsAAAAEAAEAAAANAAwAAAADAAEAAAANAA0AAAADAAEAAAANAA4AAAADAAEAAAAOAAsAAAACAAIAAAAOAAoAAAACAAEAAAAOAAkAAAACAAEAAAALAAkAAAABAAIAAAAIAAsAAAACAAEAAAAIAAoAAAACAAEAAAAIAAwAAAACAAIAAAAHAAwAAAAAAAIAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAMAAkAAAABAAIAAAAOAAcAAAABAAAAAAAPAAcAAAABAAAAAAARAAcAAAABAAAAAAASAAcAAAABAAAAAAATAAcAAAABAAAAAAAUAAcAAAABAAAAAAAQAAcAAAABAAAAAAAVAAsAAAAAAAIAAAAWAAsAAAACAAIAAAANAA8AAAAHAAMAAAAHAA8AAAAAAAMAAAAIAA8AAAABAAMAAAAJAA8AAAABAAMAAAAMAA8AAAABAAMAAAALAA8AAAABAAMAAAAKAA8AAAABAAMAAAA=")
 tile_set = ExtResource("2_dwbse")
 
-[node name="CliffTileMapLayer" type="TileMapLayer" parent="GroundLayer" unique_id=386817651]
+[node name="CliffTileMapLayer" type="TileMapLayer" parent="GroundLayer" unique_id=386817651 groups=["navigation_polygon_source_geometry_group"]]
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP//AAAFAAAAAAABAP//AAABAAMAAAACAP//AAABAAMAAAAAAAEAAAACAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAAAAAAACAAEAAAACAAIAAAAHAAAAAAABAAIAAAABAAMAAAAAAAIAAAAFAAMAAAD//wIAAAAAAAIAAAACAAMAAAADAAIAAAALAP//AAAGAAAAAAALAAAAAAAAAAEAAAALAAEAAAAAAAEAAAAMAAEAAAABAAEAAAANAAEAAAAFAAEAAAAOAAEAAAACAAIAAAAOAAAAAAACAAEAAAANAAAAAAABAAEAAAANAP//AAABAAAAAAAMAP//AAABAAAAAAAMAAAAAAABAAEAAAAOAP//AAACAAAAAAAKAP//AAABAAMAAAAJAP//AAABAAMAAAAIAP//AAABAAMAAAAHAP//AAABAAMAAAAGAP//AAABAAMAAAAFAP//AAABAAMAAAAEAP//AAABAAMAAAADAP//AAABAAMAAAALAAIAAAAAAAEAAAALAAMAAAAAAAIAAAAMAAMAAAABAAIAAAANAAMAAAACAAIAAAANAAIAAAACAAEAAAAMAAIAAAABAAEAAAAAAAYAAAAAAAAAAAABAAYAAAABAAAAAAACAAYAAAACAAAAAAACAAcAAAACAAIAAAABAAcAAAABAAIAAAAAAAcAAAAAAAIAAAAHAAYAAAAAAAAAAAAIAAYAAAABAAAAAAAJAAYAAAABAAAAAAAKAAYAAAABAAAAAAALAAYAAAACAAAAAAALAAcAAAACAAEAAAALAAgAAAACAAEAAAALAAkAAAACAAIAAAAHAAcAAAAAAAIAAAAIAAcAAAAGAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAAJAAgAAAAGAAEAAAAIAAgAAAAAAAIAAAAJAAkAAAAAAAIAAAAKAAkAAAABAAIAAAA=")
 tile_set = ExtResource("3_dwbse")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1714797221]
+navigation_polygon = SubResource("NavigationPolygon_v8qb6")
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=609422381 instance=ExtResource("1_f3sb7")]
 position = Vector2(145, 140)
@@ -62,6 +76,12 @@ position = Vector2(167, 105)
 [node name="tree3" parent="." unique_id=382684683 instance=ExtResource("4_aqk2v")]
 position = Vector2(81, 103)
 
+[node name="BatEnemy" parent="." unique_id=531310760 instance=ExtResource("8_gbfbk")]
+position = Vector2(344, 168)
+
+[node name="BatEnemy2" parent="." unique_id=308202453 instance=ExtResource("8_gbfbk")]
+position = Vector2(248, 56)
+
 [node name="Grass" parent="." unique_id=1390388645 instance=ExtResource("7_pkg7o")]
 position = Vector2(40, 103)
 
@@ -84,10 +104,20 @@ position = Vector2(166, 8)
 position = Vector2(166, 24)
 
 [node name="Grass2" parent="." unique_id=1749209741 instance=ExtResource("7_pkg7o")]
-position = Vector2(57, 103)
+position = Vector2(56, 104)
 
-[node name="BatEnemy" parent="." unique_id=531310760 instance=ExtResource("8_gbfbk")]
-position = Vector2(208, 146)
+[node name="UI" type="CanvasLayer" parent="." unique_id=42497168]
 
-[node name="BatEnemy2" parent="." unique_id=170644517 instance=ExtResource("8_gbfbk")]
-position = Vector2(304, 77)
+[node name="HeartsUI" parent="UI" unique_id=743202334 instance=ExtResource("9_ioo17")]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 24.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=947608101]
+stream = ExtResource("10_wse8f")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Pauser" parent="." unique_id=838438873 instance=ExtResource("11_ic0uy")]

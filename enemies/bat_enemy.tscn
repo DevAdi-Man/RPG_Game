@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://dmkmqrgx52y83" path="res://enemies/bat_enemy.gd" id="1_5gx0a"]
 [ext_resource type="Texture2D" uid="uid://6l260j3bd7st" path="res://enemies/bat.png" id="1_e7gs6"]
 [ext_resource type="Texture2D" uid="uid://4ilqv74hhgye" path="res://shadows/small_shadow.png" id="2_5gx0a"]
+[ext_resource type="Script" uid="uid://ciwbtrgawwcgt" path="res://stats.gd" id="2_erta8"]
+[ext_resource type="Script" uid="uid://bnct71vsrurli" path="res://damage_boxes/hurtBox.gd" id="4_grp10"]
+[ext_resource type="Script" uid="uid://cur6vp1lxffiu" path="res://damage_boxes/hitbox.gd" id="6_ww8v4"]
+
+[sub_resource type="Resource" id="Resource_grp10"]
+script = ExtResource("2_erta8")
+health = 3
+max_health = 3
+metadata/_custom_type_script = "uid://ciwbtrgawwcgt"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7gs6"]
+radius = 5.0
 
 [sub_resource type="Animation" id="Animation_e7gs6"]
 length = 0.001
@@ -17,6 +29,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_5gx0a"]
@@ -37,17 +73,59 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_grp10"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_grp10"]
 _data = {
 &"RESET": SubResource("Animation_e7gs6"),
-&"fly": SubResource("Animation_5gx0a")
+&"fly": SubResource("Animation_5gx0a"),
+&"hit": SubResource("Animation_grp10")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e7gs6"]
-radius = 5.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7gs6"]
 animation = &"fly"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grp10"]
+animation = &"hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5gx0a"]
 animation = &"fly"
@@ -56,43 +134,98 @@ animation = &"fly"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_erta8"]
+advance_mode = 2
+advance_expression = "can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ww8v4"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_boacx"]
+advance_mode = 2
+advance_expression = "velocity == Vector2(0,0)"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e7gs6"]
-states/Chase/node = SubResource("AnimationNodeAnimation_e7gs6")
-states/Chase/position = Vector2(434.03198, 239.20001)
+states/ChaseState/node = SubResource("AnimationNodeAnimation_e7gs6")
+states/ChaseState/position = Vector2(434.03198, 239.20001)
 states/End/position = Vector2(728.8, 99.436806)
-states/Idle/node = SubResource("AnimationNodeAnimation_5gx0a")
-states/Idle/position = Vector2(434.8, 100.736)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_grp10"), "Idle", "Chase", SubResource("AnimationNodeStateMachineTransition_erta8"), "Chase", "Idle", SubResource("AnimationNodeStateMachineTransition_ww8v4")]
+states/HitState/node = SubResource("AnimationNodeAnimation_grp10")
+states/HitState/position = Vector2(598, 99.436806)
+states/IdleState/node = SubResource("AnimationNodeAnimation_5gx0a")
+states/IdleState/position = Vector2(434.8, 100.736)
+transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTransition_grp10"), "IdleState", "ChaseState", SubResource("AnimationNodeStateMachineTransition_erta8"), "ChaseState", "IdleState", SubResource("AnimationNodeStateMachineTransition_ww8v4"), "HitState", "IdleState", SubResource("AnimationNodeStateMachineTransition_boacx")]
+graph_offset = Vector2(0, 57.539753)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5gx0a"]
+graph_offset = Vector2(-189.9844, -65.56146)
 nodes/output/position = Vector2(480, 144)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_e7gs6")
 nodes/StateMachine/position = Vector2(128, 112)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8qb6"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bvtv"]
+radius = 3.0
+
 [node name="BatEnemy" type="CharacterBody2D" unique_id=531310760]
+collision_layer = 4
+collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_5gx0a")
+stats = SubResource("Resource_grp10")
+metadata/_edit_horizontal_guides_ = [-14.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=760389553]
 texture = ExtResource("1_e7gs6")
-offset = Vector2(0, -4)
+offset = Vector2(-1, -4)
 hframes = 5
 
 [node name="Shadow2D" type="Sprite2D" parent="." unique_id=1557772483]
 show_behind_parent = true
 texture = ExtResource("2_5gx0a")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1916733122]
-libraries/ = SubResource("AnimationLibrary_grp10")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2133561158]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_e7gs6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1916733122]
+libraries/ = SubResource("AnimationLibrary_grp10")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=415920720]
 tree_root = SubResource("AnimationNodeBlendTree_5gx0a")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1535048845]
+target_position = Vector2(8, 0)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=99902502]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("4_grp10")
+metadata/_custom_type_script = "uid://bnct71vsrurli"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1693560951]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_v8qb6")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1987000234]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_ww8v4")
+metadata/_custom_type_script = "uid://cur6vp1lxffiu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=627453142]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_7bvtv")
+debug_color = Color(0.8672415, 0.31220353, 0.44362408, 0.41960785)
+
+[node name="Center" type="Marker2D" parent="." unique_id=323813672]
+position = Vector2(0, -8)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1298625146]
+position = Vector2(0, -4)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Marker2D" unique_id=553559400]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
